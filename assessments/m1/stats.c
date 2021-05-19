@@ -9,13 +9,13 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief A simple application that performs statistical analytics on a dataset. 
  *
- * <Add Extended Description Here>
+ * Functions like min, max, average, and others are performed and printed. 
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Brian Weinstein
+ * @date May 19, 2021
  *
  */
 
