@@ -12,7 +12,13 @@
  * @file stats.h
  * @brief Header file for a simple application that performs statistical analytics on a dataset. 
  *
- * 
+ *  print_statistics()
+ *  print_array()
+ *  find_median()
+ *  find_mean()
+ *  find_maximum()
+ *  find_minimum()
+ *  sort_array()
  *
  * @author Brian Weinstein
  * @date May 19, 2021
@@ -24,66 +30,66 @@
 /**
  * @brief A function that prints the statistics of an array including minimum, maximum, mean, and median.
  *
- * @param p pointer to data array
+ * @param array_data is a 1D array of data
  *
  * @return no return, only print statements
  */
-void print_statistics(char p)
+void print_statistics(unsigned char array_data[]);
 
 
 /**
  * @brief Given an array of data and a length, prints the array to the screen
  * 
- * @param p pointer to data array
- * @param size size of data array
+ * @param array_data is a 1D array of data
+ * @param array_size size of array_data
  *
  * @return no return, only print statements
  */
-void print_array(char p, int size) 
+void print_array(unsigned char array_data[], int array_size);
 
 
 /**
  * @brief Given an array of data and a length, returns the median value
  *
- * @param p pointer to data array
- * @param size size of data array
+ * @param array_data is a 1D array of data
+ * @param array_size size of array_data
  *
  * @return no return, only print statements
  */
-int median find_median(char p, int size) 
+int find_median(unsigned char array_data[], int array_size);
 
 
 /**
  * @brief Given an array of data and a length, returns the mean
  *
- * @param p pointer to data array
- * @param size size of data array
+ * @param array_data is a 1D array of data
+ * @param array_size size of array_data
  *
  * @return no return, only print statements
  */
-int mean find_mean(char p, int size) 
+int find_mean(unsigned char array_data[], int array_size); 
 
 
 /**
  * @brief Given an array of data and a length, returns the maximum
  *
- * @param p pointer to data array
- * @param size size of data array
+ * @param array_data is a 1D array of data
+ * @param array_size size of array_data
  *
  * @return no return, only print statements
  */
-int max find_maximum(char p, int size) 
+int find_maximum(unsigned char array_data[], int array_size); 
 
 
 /**
  * @brief Given an array of data and a length, returns the minimum
  *
- * @param p pointer to data array
- * @param size size of data array
+ * @param array_data is a 1D array of data
+ * @param array_size size of array_data
  *
  * @return no return, only print statements
  */
-int min find_minimum(char p, int size) 
+int find_minimum(unsigned char array_data[], int array_size); 
 
 
 /**
@@ -91,12 +97,12 @@ int min find_minimum(char p, int size)
  * 
  * (The zeroth Element should be the largest value, and the last element (n-1) should be the smallest value.
  * 
- * @param p pointer to data array
- * @param size size of data array
+ * @param array_data is a 1D array of data
+ * @param array_size size of array_data
  *
  * @return no return, only print statements
  */
-void sort_array(char p, int size) 
+void sort_array(unsigned char array_data[], int array_size); 
 
 
 #endif /* __STATS_H__ */
