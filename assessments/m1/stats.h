@@ -54,7 +54,7 @@ void print_array(unsigned char array_data[], int array_size);
  * @param array_data is a 1D array of data
  * @param array_size size of array_data
  *
- * @return no return, only print statements
+ * @return returns in integer value
  */
 int find_median(unsigned char array_data[], int array_size);
 
@@ -65,9 +65,9 @@ int find_median(unsigned char array_data[], int array_size);
  * @param array_data is a 1D array of data
  * @param array_size size of array_data
  *
- * @return no return, only print statements
+ * @return returns a floating point value
  */
-int find_mean(unsigned char array_data[], int array_size); 
+float find_mean(unsigned char array_data[], int array_size); 
 
 
 /**
@@ -76,7 +76,7 @@ int find_mean(unsigned char array_data[], int array_size);
  * @param array_data is a 1D array of data
  * @param array_size size of array_data
  *
- * @return no return, only print statements
+ * @return returns an integer value
  */
 int find_maximum(unsigned char array_data[], int array_size); 
 
@@ -87,7 +87,7 @@ int find_maximum(unsigned char array_data[], int array_size);
  * @param array_data is a 1D array of data
  * @param array_size size of array_data
  *
- * @return no return, only print statements
+ * @return returns an integer value
  */
 int find_minimum(unsigned char array_data[], int array_size); 
 

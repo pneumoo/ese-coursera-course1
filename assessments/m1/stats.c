@@ -18,9 +18,6 @@
  * @date May 19, 2021
  *
  */
-
-
-
 #include <stdio.h>
 #include "stats.h"
 
@@ -35,28 +32,17 @@ void main() {
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
+
   // Print statistics function call:
   print_statistics(test, SIZE);
 
   //Print array data from function call:
   print_array(test, SIZE);
 
-//---------TESTING-------------
-  //find_mean() and print
-  int mean = find_mean(test, SIZE);
-  printf("Mean: %f\n", mean); //TODO: this seems to FLOOR avg value... why? 
-
-  // find_maximum() on unsorted data
-  int max = find_maximum(test, SIZE);
-  printf("Maximum value: %d\n", max);
-
-  // find_minimum() on unsorted data
-  int min = find_minimum(test, SIZE);
-  printf("Minimum value: %d\n", min);
-//---------/TESTING/------------
-
   return; // main() return
 }
+
+
 
 /* ------------------------------------------------
 FUNCTION: print_statistics() 
@@ -65,8 +51,8 @@ void print_statistics(unsigned char array_data[], int array_size) {
   // add statistics functions here...
   int min = find_minimum(array_data, array_size);
   int max = find_maximum(array_data, array_size);
-  float mean = find_mean(array_data, array_size);
-  float median = 0.0; //TODO: add the find_median() call here when that function is complete
+  int mean = find_mean(array_data, array_size);
+  int median = find_median(array_data, array_size);
 
   // add all the print statements here...
   printf("\n---DATA STATISTICS---\n");
@@ -96,19 +82,31 @@ void print_array(unsigned char array_data[], int array_size) {
 /* ------------------------------------------------
 FUNCTION: find_median()
 ------------------------------------------------ */
-  //use sort function here
-  //then do median math
-  //return median
+int find_median(unsigned char array_data[], int array_size) {
+  int median = 0;
+  int i = 0;
+
+  sort_array(array_data, array_size);
+
+  if (SIZE % 2 == 0) {  //Check if array_size is even
+    i = SIZE / 2;
+  }
+  else {    // Else, array_size is odd
+    i = ((SIZE / 2) + 0.5);
+  }
+  return array_data[i]; //Get value at that index
+}
+
 
 /* ------------------------------------------------
-FUNCTION: find_mean()  
+FUNCTION: find_mean(), for unsorted array data  
 ------------------------------------------------ */
-int find_mean(unsigned char array_data[], int array_size) {
+float find_mean(unsigned char array_data[], int array_size) {
   int sum = 0;
   for (int i = 0; i < array_size; i++) {
     sum += array_data[i];
   }
-  return sum/array_size;
+  return sum/array_size;  
 }
 
 
@@ -140,5 +138,20 @@ int find_minimum(unsigned char array_data[], int array_size) {
 }
 
 /* ------------------------------------------------
-FUNCTION: sort_array()
+FUNCTION: sort_array(): sorts in place
 ------------------------------------------------ */
+void sort_array(unsigned char array_data[], int array_size) {
+  int i,j;
+  for (int i = 0; i < array_size; i++) {    //Main loop
+		for (int j = 0; j < array_size; j++) {  //Loop to get second value
+			if (array_data[j] < array_data[i]) {  //Compare values
+				int tmp = array_data[i];            //
+				array_data[i] = array_data[j];      //Swap value locations
+				array_data[j] = tmp;                //
+			}
+		}
+	}
+  return;
+}
+
+
