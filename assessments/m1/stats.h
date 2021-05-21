@@ -34,7 +34,7 @@
  *
  * @return no return, only print statements
  */
-void print_statistics(unsigned char array_data[]);
+void print_statistics(unsigned char array_data[], int array_size);
 
 
 /**
