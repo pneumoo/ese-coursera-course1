@@ -9,4 +9,4 @@ In this programming assignment you will create a simple application that perform
 
 NOTE: 
 
-This code was developed initnially with VScode on Win10, which is why the `.vscode` and `stats.exe` exist in the directory. I've compiled the code and run `stats.out` in the required VM as well.
+This code was developed initially with VScode on Win10. I've compiled the code and run `stats.out` in the required VM as well. 
