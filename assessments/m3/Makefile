@@ -42,7 +42,7 @@ LINKER_FILE = msp432p401r.lds
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-ld
 TARGET = demo
-LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE)
+LDFLAGS = -Wl,-Map=main.map -T $(LINKER_FILE)
 CFLAGS = -mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) -Wall
 CPPFLAGS = -I.$(INCLUDES)
 

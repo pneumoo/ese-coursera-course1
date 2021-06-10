@@ -1,0 +1,100 @@
+
+main.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	b590      	push	{r4, r7, lr}
+   2:	b083      	sub	sp, #12
+   4:	af00      	add	r7, sp, #0
+   6:	230c      	movs	r3, #12
+   8:	603b      	str	r3, [r7, #0]
+   a:	232d      	movs	r3, #45	; 0x2d
+   c:	001a      	movs	r2, r3
+   e:	0013      	movs	r3, r2
+  10:	009b      	lsls	r3, r3, #2
+  12:	189b      	adds	r3, r3, r2
+  14:	005b      	lsls	r3, r3, #1
+  16:	0018      	movs	r0, r3
+  18:	f7ff fffe 	bl	0 <malloc>
+  1c:	0003      	movs	r3, r0
+  1e:	607b      	str	r3, [r7, #4]
+  20:	687b      	ldr	r3, [r7, #4]
+  22:	2b00      	cmp	r3, #0
+  24:	d102      	bne.n	2c <main+0x2c>
+  26:	2301      	movs	r3, #1
+  28:	425b      	negs	r3, r3
+  2a:	e00f      	b.n	4c <main+0x4c>
+  2c:	2400      	movs	r4, #0
+  2e:	e009      	b.n	44 <main+0x44>
+  30:	687b      	ldr	r3, [r7, #4]
+  32:	0018      	movs	r0, r3
+  34:	f7ff fffe 	bl	0 <func>
+  38:	0002      	movs	r2, r0
+  3a:	4b06      	ldr	r3, [pc, #24]	; (54 <main+0x54>)
+  3c:	601a      	str	r2, [r3, #0]
+  3e:	683b      	ldr	r3, [r7, #0]
+  40:	3301      	adds	r3, #1
+  42:	603b      	str	r3, [r7, #0]
+  44:	232d      	movs	r3, #45	; 0x2d
+  46:	429c      	cmp	r4, r3
+  48:	dbf2      	blt.n	30 <main+0x30>
+  4a:	2300      	movs	r3, #0
+  4c:	0018      	movs	r0, r3
+  4e:	46bd      	mov	sp, r7
+  50:	b003      	add	sp, #12
+  52:	bd90      	pop	{r4, r7, pc}
+  54:	00000000 	andeq	r0, r0, r0
+
+Disassembly of section .data:
+
+00000000 <g3>:
+   0:	Address 0x0000000000000000 is out of bounds.
+
+
+Disassembly of section .bss:
+
+00000000 <g1>:
+   0:	00000000 	andeq	r0, r0, r0
+
+00000004 <g4>:
+	...
+
+Disassembly of section .rodata:
+
+00000000 <g2>:
+   0:	0000002d 	andeq	r0, r0, sp, lsr #32
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	43434700 	movtmi	r4, #14080	; 0x3700
+   4:	3128203a 			; <UNDEFINED> instruction: 0x3128203a
+   8:	2e353a35 			; <UNDEFINED> instruction: 0x2e353a35
+   c:	2b312e34 	blcs	c4b8e4 <g4+0xc4b8e0>
+  10:	326e7673 	rsbcc	r7, lr, #120586240	; 0x7300000
+  14:	35313134 	ldrcc	r3, [r1, #-308]!	; 0xfffffecc
+  18:	29312d35 	ldmdbcs	r1!, {r0, r2, r4, r5, r8, sl, fp, sp}
+  1c:	342e3520 	strtcc	r3, [lr], #-1312	; 0xfffffae0
+  20:	3220312e 	eorcc	r3, r0, #-2147483637	; 0x8000000b
+  24:	30363130 	eorscc	r3, r6, r0, lsr r1
+  28:	00393139 	eorseq	r3, r9, r9, lsr r1
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00003141 	andeq	r3, r0, r1, asr #2
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	00000027 	andeq	r0, r0, r7, lsr #32
+  10:	726f4305 	rsbvc	r4, pc, #335544320	; 0x14000000
+  14:	2d786574 	cfldr64cs	mvdx6, [r8, #-464]!	; 0xfffffe30
+  18:	002b304d 	eoreq	r3, fp, sp, asr #32
+  1c:	4d070c06 	stcmi	12, cr0, [r7, #-24]	; 0xffffffe8
+  20:	04120109 	ldreq	r0, [r2], #-265	; 0xfffffef7
+  24:	01150114 	tsteq	r5, r4, lsl r1
+  28:	01180317 	tsteq	r8, r7, lsl r3
+  2c:	011a0119 	tsteq	sl, r9, lsl r1
+  30:	Address 0x0000000000000030 is out of bounds.
+
