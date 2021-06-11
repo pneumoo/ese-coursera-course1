@@ -24,73 +24,26 @@
 include sources.mk
 
 
-# Platform Overrides
-ifeq ($(PLATFORM),MSP432)
-	PLATFORM = MSP432
-else
-	PLATFORM = HOST
-endif
-
-
-# Architectures Specific Flags
-ifeq ($(PLATFORM),MSP432)
-	LINKER_FILE = ../msp432p401r.lds
-	CPU = cortex-m4
-	ARCH = thumb
-	ARMVER = armv7e-m
-	ABI = hard
-	FPU = fpv4-sp-d16
-	SPECS = nosys.specs
-endif
-
 
 # Compiler Flags and Defines
-TARGET = c1m2
+TARGET = final
+PLATFORM = HOST 
 GEN_FLAGS = -Wall \
-		-Werror \
 		-g \
 		-O0 \
 		-std=c99
-
-ifeq ($(PLATFORM),HOST)
-	CC = gcc
-	LDFLAGS = -Wl,-Map=$(TARGET).map
-	CFLAGS = $(GEN_FLAGS)
-	CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
-endif
-
-ifeq ($(PLATFORM),MSP432)
-	CC = arm-none-eabi-gcc
-	LD = arm-none-eabi-ld
-	LDFLAGS = -Wl,-Map=$(TARGET).map \
-			-T $(LINKER_FILE) \
-	CFLAGS = $(GEN_FLAGS) \
-			-mcpu=$(CPU) \
-			-m$(ARCH) \
-			-march=$(ARMVER) \
-			-mfloat-abi=$(ABI) \
-			-mfpu=$(FPU) \
-			--specs=$(SPECS) 
-	CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
-endif
+CC = gcc
+LDFLAGS = -Wl,-Map=$(TARGET).map
+CFLAGS = $(GEN_FLAGS)
+CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
 
 
-PPROCS = $(SOURCES:.c=.i)	# Pre-process file list
-DEPS = $(SOURCES.c=.d)		# Dependency file list
-ASMS = $(SOURCES:.c=.asm)	# Assembly file list
+
+
+
+
 OBJS = $(SOURCES:.c=.o)		# Object file list
 
-# Generate preprocessed files  ('-E' -> Stop after preprocessing stage)
-%.i : %.c
-	$(CC) -E $(CFLAGS) $(CPPFLAGS) -o $@ $^
-
-# Generate dependency files
-%.d : %.c
-	$(CC) -M $(CFLAGS) $(CPPFLAGS) -o $@ $^
-
-# Generate assembly files  ('-S' -> stop after compilation proper, do not assemble)
-%.asm : %.c
-	$(CC) -S $(CFLAGS) $(CPPFLAGS) -o $@ $^ 
 
 # Generate object files ('-c' -> compile and assemble, but do not link)
 %.o : %.c
@@ -98,15 +51,7 @@ OBJS = $(SOURCES:.c=.o)		# Object file list
 
 
 
-
-
 # PHONYS - 
-.PHONY: compile-all
-compile-all: $(OBJS)
-
-.PHONY: build
-build: all
-
 .PHONY: all
 all: $(TARGET).out
 

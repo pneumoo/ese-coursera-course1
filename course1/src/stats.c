@@ -70,11 +70,13 @@ void print_statistics(unsigned char array_data[], int array_size) {
 FUNCTION: print_array() 
 ------------------------------------------------ */
 void print_array(unsigned char array_data[], int array_size) {
-  printf("\n---ARRAY DATA---\n");
-  for (int i = 0; i < array_size; i++) {
-    printf("test[%d]: %d\n", i, array_data[i]);
-  }
-  printf("---END ARRAY DATA---\n");
+  #ifdef VERBOSE
+	  printf("\n---ARRAY DATA---\n");
+	  for (int i = 0; i < array_size; i++) {
+	    printf("test[%d]: %d\n", i, array_data[i]);
+	  }
+	  printf("---END ARRAY DATA---\n");
+  #endif
   return; //print_array()
 }
 

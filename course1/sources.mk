@@ -10,27 +10,30 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-ifeq ($(PLATFORM),HOST)
-	SOURCES =  main.c \
-			memory.c
-endif
 
 ifeq ($(PLATFORM),MSP432)
-	SOURCES =  main.c \
-		   memory.c \
-		   startup_msp432p401r_gcc.c \
-		   interrupts_msp432p401r_gcc.c \
-		   system_msp432p401r.c
+	SOURCES =  ./src/main.c \
+			./src/memory.c \
+			./src/course1.c \
+			./src/data.c \
+			./src/stats.c \
+		   	./src/startup_msp432p401r_gcc.c \
+		   	./src/interrupts_msp432p401r_gcc.c \
+		   	./src/system_msp432p401r.c
+else
+	SOURCES =  ./src/main.c \
+			./src/course1.c \
+			./src/memory.c \
+			./src/data.c \
+			./src/stats.c
 endif
-		
+	
 
 # Add your include paths to this variable
-ifeq ($(PLATFORM),HOST)
-	INCLUDES = -I../include/common/
-endif
-
 ifeq ($(PLATFORM),MSP432)
-	INCLUDES = -I../include/common/ \
-		-I../include/msp432/ \
-		-I../include/CMSIS/
+	INCLUDES = -I./include/common/ \
+		-I./include/msp432/ \
+		-I./include/CMSIS/
+else
+	INCLUDES = -I./include/common/
 endif
