@@ -1,14 +1,31 @@
-/* DATA.H PLACE HOLDER 
+// Brian Weinstein
+// June 15th 2021
+// data.h
+//
+// basic memory manipulations
 
-data.c/data.h Requirements
-
-This file should do some very basic data manipulation.*/
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
 
 #ifndef __DATA_H__
 #define __DATA_H__
 
-#include <stdint.h>
-
+#define BASE_16 (16)
+#define BASE_15 (15)
+#define BASE_14 (14)
+#define BASE_13 (13)
+#define BASE_12 (12)
+#define BASE_11 (11)
+#define BASE_10 (10)
+#define BASE_9 (9)
+#define BASE_8 (8)
+#define BASE_7 (7)
+#define BASE_6 (6)
+#define BASE_5 (5)
+#define BASE_4 (4)
+#define BASE_3 (3)
+#define BASE_2 (2)
 
 /**
  * @brief Integer-to-ASCII conversion
@@ -36,9 +53,6 @@ This file should do some very basic data manipulation.*/
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base);
 
 	
-
-
-
 
 /**
  * @brief ASCII-to-Integer converter
@@ -69,7 +83,6 @@ int getval(char c, char * chararray);
 
 /*exponent helper function*/
 int power(uint32_t base, int exp);
-
 
 
 #endif /* __DATA_H__ */

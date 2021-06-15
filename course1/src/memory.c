@@ -20,6 +20,7 @@
  * @date April 1 2017
  *
  */
+
 #include "memory.h"
 
 /***********************************************************
@@ -57,7 +58,7 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length) {
 	/*For case of data overlap, copy data backwards*/
 	if(src < dst && dst <= (src + length)) {
 		unsigned int i;
-		for (i = 0; i < length; i + sizeof(length)) {
+		for (i = 0; i < length; i++) {
 			*(dst+length - i) = *(src+length - i);
 		}
 	}
@@ -73,7 +74,7 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length) {
 	unsigned int i;
 	/*Moves src+i byte to dst+i byte until all have been moved*/
 	/*Data corruption may occur if (src < dst <= src+length) */
-	for (i = 0; i < length; i + sizeof(length)) {
+	for (i = 0; i < length; i++) {
 		*(dst + i) = *(src + i);
 	}
 	return dst;
@@ -121,7 +122,7 @@ int32_t * reserve_words(size_t length)
 	if (p == NULL) 
 	{
   	fprintf(stderr, "malloc failed\n");
-  	return -1;
+  	return p;
   }
   
   else 
@@ -131,10 +132,9 @@ int32_t * reserve_words(size_t length)
 } 
 
 
-void free_words(int32_t * src) 
+void free_words(void * src)  // passed type needs to be void for some reason...?
 {
 	free(src);
-	return 0;
 }
 
 

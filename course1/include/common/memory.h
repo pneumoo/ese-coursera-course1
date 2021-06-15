@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 
 #ifndef __MEMORY_H__
@@ -150,6 +151,21 @@ uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
 
 
 /**
+ * @brief Sets all bytes to zero 
+ * 
+ * This should take a pointer to a source memory location, a length in bytes 
+ * and set all locations of that memory to zero. 
+ * You should NOT reuse the set_all() function.
+ *
+ * @param uint8_t src Pointer to the source memory byte
+ * @param size_t length The length of bytes
+ *
+ * @return uint8_t src, Returns the pointer of the source
+ */
+uint8_t * my_memzero(uint8_t * src, size_t length);
+
+
+/**
  * @brief Reverses the order of a section of memory
  * 
  * This should take a pointer to a memory location and a length in 
@@ -188,7 +204,7 @@ int32_t * reserve_words(size_t length);
  *
  * @return void 
  */
-void free_words(int32_t * src);
+void free_words(void * src);  // passed type needs to be void for some reason...?
 
 
 

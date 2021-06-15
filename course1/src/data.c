@@ -1,15 +1,14 @@
-/* DATA.C PLACE HOLDER 
-
-data.c/data.h Requirements
-
-This file should do some very basic data manipulation.*/
+// Brian Weinstein
+// June 15th 2021
+// data.c
+//
+// This file does basic memory manipulations
 
 #include "data.h"
 
 // Character array for ASCII values up to base 16
 char hex [] = { '0', '1', '2', '3', '4', '5', \
   '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-
 
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) 
 {
@@ -40,7 +39,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
   }
   else 
   {
-    *ptr--; //corrects ptr location to last value
+    ptr--; //corrects ptr location to last value
   }
 
   // reverse everything so that it's in teh correct order for later
@@ -95,6 +94,8 @@ int getval(char c, char * chararray)
 			return i;			
 		}	
 	}
+	printf("ERROR - VALUE NOT FOUND. RETURNING 0");
+	return 0;
 }
 
 
