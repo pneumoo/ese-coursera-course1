@@ -7,22 +7,8 @@ This file should do some very basic data manipulation.*/
 #ifndef __DATA_H__
 #define __DATA_H__
 
+#include <stdint.h>
 
-int BASE_16 = 16;
-int BASE_15 = 15;
-int BASE_14 = 14;
-int BASE_13 = 13;
-int BASE_12 = 12;
-int BASE_11 = 11;
-int BASE_10 = 10;
-int BASE_9 = 9;
-int BASE_8 = 8;
-int BASE_7 = 7;
-int BASE_6 = 6;
-int BASE_5 = 5;
-int BASE_4 = 4;
-int BASE_3 = 3;
-int BASE_2 = 2;
 
 /**
  * @brief Integer-to-ASCII conversion
@@ -75,6 +61,14 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base);
  *
  */
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base);
+
+
+/*get value from char array helper function*/
+int getval(char c, char * chararray);
+
+
+/*exponent helper function*/
+int power(uint32_t base, int exp);
 
 
 

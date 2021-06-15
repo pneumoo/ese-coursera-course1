@@ -57,8 +57,9 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length) {
 	/*For case of data overlap, copy data backwards*/
 	if(src < dst && dst <= (src + length)) {
 		unsigned int i;
-		for (i = 0, i < length, i + sizeof(uint8_t)) {
-			*(dst+legnth - i) = *(src+length - i);
+		for (i = 0; i < length; i + sizeof(length)) {
+			*(dst+length - i) = *(src+length - i);
+		}
 	}
 	/* Otherwise, we can use just regular copy */
 	else{
@@ -72,7 +73,7 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length) {
 	unsigned int i;
 	/*Moves src+i byte to dst+i byte until all have been moved*/
 	/*Data corruption may occur if (src < dst <= src+length) */
-	for (i = 0, i < length, i + sizeof(uint8_t)) {
+	for (i = 0; i < length; i + sizeof(length)) {
 		*(dst + i) = *(src + i);
 	}
 	return dst;
@@ -80,31 +81,60 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length) {
 
 
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value) {
-	unsigned int i;
-	for (i = 0, i < length, i + sizeof(uint8_t)) {
-		*(src + i) = value;
+	size_t i;
+	for (i = 0; i < length; i++) {
+		*(src++) = value;
 	}
-	return src
+	return src;
 }
 
 
 uint8_t * my_memzero(uint8_t * src, size_t length) {
-
+	// Just use my_memset with zero setting. Already returns src pointer.
+	return my_memset(src, length, 0);
 }
 
 
-uint8_t * my_reverse(uint8_t * src, size_t length) {
+uint8_t * my_reverse(uint8_t * src, size_t length) 
+{
+  int a, b;                     			//variables to store swap values
 
+  for(int i=0; i<length/2; i++) 
+  {
+    a = *(src+i);               			//a gets value from dereferenced arr ptr (increments up)
+    b = *(src + (length-i-1));        //b decrements. -1 due to length->index difference
+    
+    *(src+i) = b;
+    *(src + (length-i-1)) = a;        //swap the values    
+  }
+
+	return src;  
 } 
 
 
-int32_t * reserve_words(size_t length) {
-
+int32_t * reserve_words(size_t length) 
+{
+	int32_t * p = malloc(length * sizeof(int32_t));
+	
+	// malloc may not be able to service this request...
+	//... so it's good practice to check for NULL pointer 
+	if (p == NULL) 
+	{
+  	fprintf(stderr, "malloc failed\n");
+  	return -1;
+  }
+  
+  else 
+  {
+		return p;
+	}
 } 
 
 
-void free_words(int32_t * src) {
-
+void free_words(int32_t * src) 
+{
+	free(src);
+	return 0;
 }
 
 
