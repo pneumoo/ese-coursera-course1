@@ -35,11 +35,9 @@ ifdef VERBOSE
 VERBOSE=VERBOSE
 endif
 
-
-
 # Architectures Specific Flags
 ifeq ($(PLATFORM),MSP432)
-	LINKER_FILE = ../msp432p401r.lds
+	LINKER_FILE = ./msp432p401r.lds
 	CPU = cortex-m4
 	ARCH = thumb
 	ARMVER = armv7e-m
@@ -47,6 +45,7 @@ ifeq ($(PLATFORM),MSP432)
 	FPU = fpv4-sp-d16
 	SPECS = nosys.specs
 endif
+
 
 
 # Compiler Flags and Defines
@@ -57,6 +56,7 @@ GEN_FLAGS = -Wall \
 		-O0 \
 		-std=c99
 
+
 ifeq ($(PLATFORM),HOST)
 	CC = gcc
 	LDFLAGS = -Wl,-Map=$(TARGET).map
@@ -64,11 +64,12 @@ ifeq ($(PLATFORM),HOST)
 	CPPFLAGS = -D$(PLATFORM) -D$(COURSE) -D$(VERBOSE) $(INCLUDES)
 endif
 
+
 ifeq ($(PLATFORM),MSP432)
 	CC = arm-none-eabi-gcc
 	LD = arm-none-eabi-ld
 	LDFLAGS = -Wl,-Map=$(TARGET).map \
-			-T $(LINKER_FILE) \
+                       -T $(LINKER_FILE) 
 	CFLAGS = $(GEN_FLAGS) \
 			-mcpu=$(CPU) \
 			-m$(ARCH) \
@@ -76,8 +77,11 @@ ifeq ($(PLATFORM),MSP432)
 			-mfloat-abi=$(ABI) \
 			-mfpu=$(FPU) \
 			--specs=$(SPECS) 
+
 	CPPFLAGS = -D$(PLATFORM) -D$(COURSE) -D$(VERBOSE) $(INCLUDES)
+
 endif
+
 
 
 PPROCS = $(SOURCES:.c=.i)	# Pre-process file list
@@ -114,6 +118,6 @@ $(TARGET).out: $(OBJS)
 
 .PHONY: clean
 clean:
-	rm -f ./src/*.i ./src/*.d ./src/*.asm ./src/*.o ./src/*.out ./src/*.map  
+	rm -f ./src/*.i ./src/*.d ./src/*.asm ./src/*.o *.out *.map  
 
 

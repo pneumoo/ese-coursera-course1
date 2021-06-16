@@ -63,7 +63,7 @@ ifeq ($(PLATFORM),MSP432)
 	CC = arm-none-eabi-gcc
 	LD = arm-none-eabi-ld
 	LDFLAGS = -Wl,-Map=$(TARGET).map \
-			-T $(LINKER_FILE) \
+			-T $(LINKER_FILE)
 	CFLAGS = $(GEN_FLAGS) \
 			-mcpu=$(CPU) \
 			-m$(ARCH) \
