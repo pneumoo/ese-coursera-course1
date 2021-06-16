@@ -24,6 +24,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
+/*
 void main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -41,7 +42,7 @@ void main() {
 
   return; // main() return
 }
-
+*/
 
 
 /* ------------------------------------------------
@@ -73,7 +74,7 @@ void print_array(unsigned char array_data[], int array_size) {
   #ifdef VERBOSE
 	  printf("\n---ARRAY DATA---\n");
 	  for (int i = 0; i < array_size; i++) {
-	    printf("test[%d]: %d\n", i, array_data[i]);
+	    printf("Data[%d]: %d\n", i, array_data[i]);
 	  }
 	  printf("---END ARRAY DATA---\n");
   #endif
@@ -85,7 +86,6 @@ void print_array(unsigned char array_data[], int array_size) {
 FUNCTION: find_median()
 ------------------------------------------------ */
 int find_median(unsigned char array_data[], int array_size) {
-  int median = 0;
   int i = 0;
 
   sort_array(array_data, array_size);
@@ -143,7 +143,6 @@ int find_minimum(unsigned char array_data[], int array_size) {
 FUNCTION: sort_array(): sorts in place
 ------------------------------------------------ */
 void sort_array(unsigned char array_data[], int array_size) {
-  int i,j;
   for (int i = 0; i < array_size; i++) {    //Main loop
 		for (int j = 0; j < array_size; j++) {  //Loop to get second value
 			if (array_data[j] < array_data[i]) {  //Compare values

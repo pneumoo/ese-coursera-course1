@@ -27,8 +27,12 @@ ifndef PLATFORM
 PLATFORM=HOST
 endif
 
+ifndef COURSE
+COURSE=COURSE1
+endif
+
 ifdef VERBOSE
-CFLAGS += -DVERBOSE
+VERBOSE=VERBOSE
 endif
 
 
@@ -57,7 +61,7 @@ ifeq ($(PLATFORM),HOST)
 	CC = gcc
 	LDFLAGS = -Wl,-Map=$(TARGET).map
 	CFLAGS = $(GEN_FLAGS)
-	CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
+	CPPFLAGS = -D$(PLATFORM) -D$(COURSE) -D$(VERBOSE) $(INCLUDES)
 endif
 
 ifeq ($(PLATFORM),MSP432)
@@ -72,7 +76,7 @@ ifeq ($(PLATFORM),MSP432)
 			-mfloat-abi=$(ABI) \
 			-mfpu=$(FPU) \
 			--specs=$(SPECS) 
-	CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
+	CPPFLAGS = -D$(PLATFORM) -D$(COURSE) -D$(VERBOSE) $(INCLUDES)
 endif
 
 

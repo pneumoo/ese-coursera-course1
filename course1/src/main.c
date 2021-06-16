@@ -25,6 +25,8 @@
 
 #ifdef COURSE1
 
+#include "course1.h"
+
 #define BASE_16 (16);
 #define BASE_15 (15);
 #define BASE_14 (14);
@@ -41,7 +43,7 @@
 #define BASE_3 (3);
 #define BASE_2 (2);
 
-void main() {
+int main(void) {
  	course1();
 	return 0;
 }

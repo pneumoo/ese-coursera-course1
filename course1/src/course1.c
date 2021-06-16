@@ -114,7 +114,7 @@ int8_t test_memmove1() {
   {
     if (set[i + 16] != i)
     {
-      ret = TEST_ERROR;
+	ret = TEST_ERROR;
     }
   }
 
@@ -339,6 +339,7 @@ void course1(void)
   for ( i = 0; i < TESTCOUNT; i++) 
   {
     failed += results[i];
+	//printf("Test %d: %d\n", i, results[i]); 
   }
 
   PRINTF("--------------------------------\n");

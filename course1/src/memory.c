@@ -56,9 +56,9 @@ void clear_all(char * ptr, unsigned int size){
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length) {
 	/*For case of data overlap, copy data backwards*/
-	if(src < dst && dst <= (src + length)) {
+	if(src < dst && dst < (src + length)) {
 		unsigned int i;
-		for (i = 0; i < length; i++) {
+		for (i = 0; i <= length; i++) {
 			*(dst+length - i) = *(src+length - i);
 		}
 	}

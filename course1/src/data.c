@@ -5,6 +5,7 @@
 // This file does basic memory manipulations
 
 #include "data.h"
+#include "memory.h"
 
 // Character array for ASCII values up to base 16
 char hex [] = { '0', '1', '2', '3', '4', '5', \
@@ -15,7 +16,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
   int r; // placeholder for remainder
   int negflag = 0;
   int length = 0; // keeps track of length of ascii
-	uint8_t temp_ptr = ptr; // to remember beginning of memory location
+	uint8_t * temp_ptr = ptr; // to remember beginning of memory location
 
 
   if(data<0)
@@ -43,7 +44,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
   }
 
   // reverse everything so that it's in teh correct order for later
-  ptr = my_reverse(temp_ptr, length);
+  my_reverse(temp_ptr, length);
 	
 	length = length + 1; // to account for '\0' terminator
 		
