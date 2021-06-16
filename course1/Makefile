@@ -12,13 +12,15 @@
 #------------------------------------------------------------------------------
 # <Put a Description Here>
 #
-# Use: make [TARGET] [PLATFORM-OVERRIDES]
+# Use: make all PLATFORM=[PLATFORM] COURSE=COURSE1 VERBOSE=VERBOSE
 #
 # Build Targets:
-#      <Put a description of the supported targets here>
+#      all .c files 
 #
 # Platform Overrides:
-#      <Put a description of the supported Overrides here
+#      	PLATFORM - is default as 'HOST', but can be 'MSP432'
+#	COURSE - is default as 'COURSE1'. No other options.
+#	VERBOSE - is default off, but can be turned on by setting as "VERBOSE"
 #
 #------------------------------------------------------------------------------
 include sources.mk
@@ -27,16 +29,10 @@ ifndef PLATFORM
 PLATFORM=HOST
 endif
 
-ifndef COURSE
-COURSE=COURSE1
-endif
 
-ifdef VERBOSE
-VERBOSE=VERBOSE
-endif
 
 # Architectures Specific Flags
-ifeq ($(PLATFORM),MSP432)
+ifeq ($(PLATFORM),MSP432) # add 'PLATFORM=MSP432" to make command
 	LINKER_FILE = ./msp432p401r.lds
 	CPU = cortex-m4
 	ARCH = thumb
@@ -61,7 +57,7 @@ ifeq ($(PLATFORM),HOST)
 	CC = gcc
 	LDFLAGS = -Wl,-Map=$(TARGET).map
 	CFLAGS = $(GEN_FLAGS)
-	CPPFLAGS = -D$(PLATFORM) -D$(COURSE) -D$(VERBOSE) $(INCLUDES)
+	CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
 endif
 
 
@@ -78,10 +74,19 @@ ifeq ($(PLATFORM),MSP432)
 			-mfpu=$(FPU) \
 			--specs=$(SPECS) 
 
-	CPPFLAGS = -D$(PLATFORM) -D$(COURSE) -D$(VERBOSE) $(INCLUDES)
+	CPPFLAGS = -D$(PLATFORM) $(INCLUDES)
 
 endif
 
+
+ifndef COURSE #add 'COURSE=COURSE1' to make command
+CPPFLAGS += -DCOURSE1
+endif
+
+
+ifdef VERBOSE #add 'VERBOSE=VERBOSE' to make command
+CPPFLAGS += -DVERBOSE
+endif
 
 
 PPROCS = $(SOURCES:.c=.i)	# Pre-process file list
